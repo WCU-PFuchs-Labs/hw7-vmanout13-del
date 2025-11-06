@@ -7,6 +7,8 @@ public class NodeFactory {
     public NodeFactory(Binop[] ops, int numVars) {
         this.ops = ops;
         this.numVars = numVars;
+    public int getNumVars() { return numVars; }
+
     }
 
     public Binop getOperator(Random rand) {
