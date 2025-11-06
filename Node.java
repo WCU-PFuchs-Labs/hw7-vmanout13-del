@@ -39,4 +39,23 @@ public abstract class Node {
     public abstract double eval(double[] data);
     public abstract String toString();
 }
+// Add this in Node.java
+public void addRandomKids(NodeFactory n, int maxDepth, Random rand) {
+    // Only Binop nodes can have kids; leaves (Unop) do not
+    if (maxDepth <= 1) {
+        lChild = new Unop(rand.nextInt(n.numVars));
+        rChild = new Unop(rand.nextInt(n.numVars));
+        return;
+    }
+    // For Binop: both left and right children are either Unop or Binop
+    lChild = rand.nextBoolean() ? new Unop(rand.nextInt(n.numVars)) : n.getOperator(rand);
+    rChild = rand.nextBoolean() ? new Unop(rand.nextInt(n.numVars)) : n.getOperator(rand);
+
+    if (!(lChild instanceof Unop)) {
+        lChild.addRandomKids(n, maxDepth - 1, rand);
+    }
+    if (!(rChild instanceof Unop)) {
+        rChild.addRandomKids(n, maxDepth - 1, rand);
+    }
+}
 
