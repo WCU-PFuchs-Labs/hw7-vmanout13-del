@@ -31,7 +31,7 @@ public class GPTree implements Collector {
         return string.toString();
     }
 
-    // Basic crossover implementation: left→left, right→right
+   // Basic crossover implementation: left to left, right to right
     public void crossover(GPTree tree, Random rand) {
         this.traverse();
         tree.traverse();
