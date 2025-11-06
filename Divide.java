@@ -1,20 +1,12 @@
 public class Divide extends Binop {
-    public Divide() {
-        super();
-    }
-
-    public Divide(Node lChild, Node rChild) {
-        super(lChild, rChild);
-    }
-
+    public Divide() {}
+    public Divide(Node l, Node r) { super(l, r); }
     public double eval(double[] data) {
-        double divisor = rChild.eval(data);
-        if (Math.abs(divisor) < 0.0001) {
-            return 1.0; // avoid infinity
-        }
-        return lChild.eval(data) / divisor;
+        double num = lChild.eval(data);
+        double den = rChild.eval(data);
+        if (Math.abs(den) < 0.0001) return 1.0;
+        return num / den;
     }
-
     public String toString() {
         return "(" + lChild + " / " + rChild + ")";
     }
